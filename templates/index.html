@@ -210,8 +210,6 @@
 
 <!--
     Added two events for editing and deleting actor's info in a table cell.
-    定义在 script 类型为 text/html 的模板里面的元素。这意味着该元素不是直接存在于 DOM 中的，因此 document.querySelector 无法找到它。
-    需要在该元素被实际插入到 DOM 中之后再添加事件监听器。
 -->
 <script type="text/html" id="tools">
     <a class="layui-btn layui-btn-xs" lay-event="edit_an_actor">EDIT</a>
