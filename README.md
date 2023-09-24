@@ -14,8 +14,7 @@
    - [Getting Started](#Getting-Started)
    - [Endpoints](#Endpoints-document)
 - [Deployment on the cloud](#Deployment-on-the-cloud)
-
-
+___
 ## Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
 * Users using this project should already have Python 3.11.3 and pip installed on their local machines.
