@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body>
+
+<form class="layui-form" action="" lay-filter="form_edit" style="margin-top: 35px">
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="id" lay-verify="required" autocomplete="off" placeholder="id"
+               class="layui-input">
+    </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Full Name</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="full name required"
+                   class="layui-input" style="width: 365px;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">Age</label>
+        <div class="layui-input-block">
+            <input type="text" name="age" lay-verify="required" autocomplete="off" placeholder="the age of an actor"
+                   class="layui-input" style="width: 365px;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">Time Free?</label>
+        <div class="layui-input-block" style="width: 365px;">
+            <select name="is_time_available" lay-verify="required">
+                <option value=""></option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">Create Time</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="create_at" id="create-at"
+                       placeholder="" autocomplete="off" lay-verify="required">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="edit-commit">Submit</button>
+            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+        </div>
+    </div>
+</form>
+
+<script src="/static/layui.js"></script>
+<script>
+    // Get access_token in frontend session storage using sessionStorage
+    // console.log('Token in actor_edit.html: ', sessionStorage.getItem('access_token'));
+    const token = sessionStorage.getItem('access_token'); // Get access_token in frontend session storage
+    // Get the data from localStorage
+    const actorDataFromEditing = localStorage.getItem('actorDataFromEditing');
+    const data = JSON.parse(actorDataFromEditing);
+
+    // Front-end methods for communicating with back-end endpoint
+    // `/api/actor/${id}` method: 'PATCH'
+    const edit_actor = async (id, data) => {
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(data)
+        }
+        const response = await fetch(`/api/actor/${id}`, options)
+        return await response.json()
+    }
+
+    // layui customization
+    layui.use(function () {
+        const $ = layui.$;
+        const form = layui.form;
+        const laydate = layui.laydate;
+
+        // Fill the data into the form using form.val
+        form.val('form_edit', data);
+
+        // render Layui date picker
+        laydate.render({
+            elem: '#create-at',
+            type: 'datetime'
+        });
+
+        // Capture the button event for adding a new actor
+        form.on('submit(edit-commit)', function (data) {
+            const field = data.field; // gets form field values
+            console.log("The field is: ", field)
+            edit_actor(field.id, field).then(function (ret) {
+                // create a callback function after a successful commit
+                if (!ret.code) {
+                    layer.msg(ret.msg, {
+                        icon: 1,
+                        time: 1000,
+                    }, function () {
+                        parent.layer.close(parent.layer.getFrameIndex(window.name)); // close current page
+                        parent.layui.table.reload('actor');
+                    });
+                } else {
+                    layer.msg(ret.msg, {
+                        icon: 2,
+                        time: 1000,
+                    });
+                }
+            })
+            return false; // Prevents default action as form jumps
+        });
+
+    })
+</script>
+</body>
+</html>

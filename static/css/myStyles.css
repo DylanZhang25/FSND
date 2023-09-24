@@ -1,0 +1,26 @@
+.layui-body {
+    display: flex;
+}
+
+.layui-card, .layui-container {
+    flex: 1;
+    margin: 10px;
+}
+
+.movie-card-background {
+    background-image: url('/static/pictures/demo movie cover.png');
+}
+
+.layui-icon-console {
+    font-size: 25px;
+    color: #1E9FFF;
+}
+.company-name {
+    color: #1E9FFF;
+}
+
+.movie-text-background {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body>
+
+<form class="layui-form" action="" lay-filter="form_add" style="margin-top: 35px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">Full Name</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="full name required"
+                   class="layui-input" style="width: 365px;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">Age</label>
+        <div class="layui-input-block">
+            <input type="text" name="age" lay-verify="required" autocomplete="off" placeholder="the age of an actor"
+                   class="layui-input" style="width: 365px;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">Time Free?</label>
+        <div class="layui-input-block" style="width: 365px;">
+            <select name="is_time_available" lay-verify="required">
+                <option value=""></option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">Create Time</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="create_at" id="create-at"
+                       placeholder="" autocomplete="off" lay-verify="required">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="add-commit">Submit</button>
+            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+        </div>
+    </div>
+</form>
+
+<script src="/static/layui.js"></script>
+<script>
+    console.log('Token can be read in actor_add.html: ', sessionStorage.getItem('access_token'));
+    // Front-end methods for communicating with back-end endpoint
+    // '/api/actor' method: 'POST'
+    const token = sessionStorage.getItem('access_token'); // Get access_token in frontend local storage
+    const add_actor = async (data) => {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(data)
+        }
+        const response = await fetch('/api/actor', options)
+        return await response.json()
+    }
+
+    // layui customization
+    layui.use(function () {
+        const $ = layui.$;
+        const form = layui.form;
+        const laydate = layui.laydate;
+
+        // render Layui date picker
+        laydate.render({
+            elem: '#create-at',
+            type: 'datetime'
+        });
+
+        // Capture the table data when adding a new actor
+        form.on('submit(add-commit)', function (data) {
+            const field = data.field; // gets form field values
+            console.log(field)
+            add_actor(field).then(function (ret) {
+                // create a callback function after a successful commit
+                if (!ret.code) {
+                    layer.msg(ret.msg, {
+                        icon: 1,
+                        time: 1000,
+                    }, function () {
+                        parent.layer.close(parent.layer.getFrameIndex(window.name)); // close current page
+                        // Returns the last page of the actor table, since the database ids are incremented and the table is sorted in ascending order by id,
+                        // the new actor data will be displayed on the last page.
+                        parent.layui.table.reload('actor', {
+                            page: {
+                                curr: Math.ceil((ret.count + 1) / 10) //
+                            }
+                        });
+
+                    });
+                } else {
+                    layer.msg(ret.msg, {
+                        icon: 2,
+                        time: 1000,
+                    });
+                }
+            })
+            return false; // Prevents default action as form jumps
+        });
+    })
+</script>
+
+</body>
+</html>

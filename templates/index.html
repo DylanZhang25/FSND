@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Casting Agency</title>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//cdn.staticfile.org/layui/2.8.16/css/layui.css" rel="stylesheet">
+
+    <style>
+        .layui-body {
+            display: flex;
+        }
+
+        .layui-card, .layui-container {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .layui-container {
+            width: 100%;
+        }
+
+        .layui-icon-console {
+            font-size: 25px;
+            color: #1E9FFF;
+        }
+        .company-name {
+            color: #1E9FFF;
+        }
+
+        .movie-card-background {
+            background-image: url('/static/pictures/demo movie cover.png');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 20px;
+            animation-name: fadeIn;
+            animation-fill-mode: forwards;
+        }
+
+        .movie-text-background {
+            background-color: rgba(255, 255, 255, 0);
+            width: 80%;
+        }
+
+        .movie-title-text {
+            color: #fafafa;
+            font-size: large;
+        }
+
+        .movie-info-text {
+            color: #fafafa;
+            font-size: small;
+        }
+
+        #login-block:hover {
+            background-color: orange;
+        }
+
+        #pagination-container {
+            border: 2px solid red;
+        }
+
+        .movies-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .movie-row {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px; /* Add some space between the rows */
+        }
+
+        .movie-card-transition {
+          transition: border 0.1s ease;
+        }
+
+        #movie-list-div {
+            width: 100%;
+        }
+
+        .data-area {
+            width: 100%;
+        }
+    </style>
+</head>
+<!-- HTML Elements Start -->
+<body>
+<div class="layui-layout layui-layout-admin" id="layui-layout-admin-homepage">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black">
+            <i class="layui-icon layui-icon-console"></i>
+            <a class="company-name">Casting Agency</a>
+        </div>
+
+        <ul class="layui-nav layui-layout-right" id="login-model">
+            <li class="layui-nav-item layui-hide layui-show-sm-inline-block" id="login-block">
+                <a href="/login" id="login-link">
+                    <i class="layui-icon layui-icon-user"></i>
+                    User Login
+                </a>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right" style="display:none;" id="user-info-model">
+            <li class="layui-nav-item layui-hide layui-show-sm-inline-block" id="user-info-block">
+                <a href="javascript:;">
+                    <img src="https://images.pexels.com/photos/69932/tabby-cat-close-up-portrait-69932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="layui-nav-img">
+                    <span id="user-name-text">User Name</span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" id="show-jwt-link">Your JWT</a></dd>
+                    <dd><a href="javascript:;" id="sign-out-link">Sign out</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black" id="side-nav">
+        <div class="layui-side-scroll">
+          <!-- Left Nav Area -->
+            <ul class="layui-nav layui-nav-tree " lay-filter="left_nav" lay-shrink="all">
+                <li class="layui-nav-item layui-nav-itemed" id="actors-management-tab">
+                    <a class="layui-nav-child-c" href="javascript:;">Actor Management</a>
+                    <dl class="layui-nav-child layui-nav-child-c">
+                        <dd><a href="javascript:;" data-event="manage_actors">manage current actors</a></dd>
+                        <dd><a href="javascript:;" data-event="add_new_actor">add an new actor</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item" id="movies-management-tab">
+                    <a class ="layui-nav-child-c" href="javascript:;">Movie Management</a>
+                    <dl class="layui-nav-child layui-nav-child-c">
+                        <dd><a href="javascript:;" data-event="manage_movies">Movies List</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+    <!-- Content Area -->
+    <div class="data-area" style="padding: 15px;">
+        <blockquote class="layui-elem-quote layui-text">
+            <h5>Welcome to use Casting Agency Management System</h5>
+        </blockquote>
+
+        <div class="layui-card layui-panel" id="introduction-div">
+            <div class="layui-card-header">
+                <h5>Short Introduction</h5>
+            </div>
+            <div class="layui-card-body">
+                <h6>Actor management includes two main functions as "manage current actors" and "add a new Actor"</h6><br>
+                <dl>
+                  <dt>In the "manage current actors" tab: </dt>
+                  <dd>users can search all users information, edit an actor's information and delete an user</dd>
+                  <dt>In the "add a new Actor" tab: </dt>
+                  <dd>users can add a new actor to the database.</dd>
+                <br>
+                </dl>
+                "As the Postgres database of this project is applying on Render.com for a free trial, please try again if the data is not presented properly." <br>
+            </div>
+        </div>
+
+        <div class="layui-container" id="actor-table-div">
+            <!-- Here the actor data will be rendered -->
+            <table class="layui-hide" id="actor"></table>
+        </div>
+
+        <div class="layui-container" id="movie-list-div">
+            <!-- Here the movie data table will be rendered -->
+        </div>
+
+        <div id="movies-pagination-container">
+            <!-- Here the movie pagination bar will be rendered -->
+            <div id="pagination"></div>
+        </div>
+
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <div id="pagination"></div>
+            </div>
+        </div>
+      <br><br>
+    </div>
+    </div>
+
+  <div class="layui-footer">
+    <!-- Bottom Fixed Area -->
+    Bottom Fixed Area
+  </div>
+</div>
+
+<!-- Added a toolbar which displays above the table -->
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container layui-row">
+        <div class="layui-col-md8">
+            <div class="layui-input-inline" style="margin-right: 10px;">
+                <input type="text" id="searchInput" name="name" value="" placeholder="Search the name..." class="layui-input" style="height: 30px;margin-bottom: 10px;">
+            </div>
+            <button class="layui-btn layui-btn-sm" lay-submit lay-filter="table-search">SEARCH</button>
+        </div>
+    </div>
+</script>
+
+<!--
+    Added two events for editing and deleting actor's info in a table cell.
+    定义在 script 类型为 text/html 的模板里面的元素。这意味着该元素不是直接存在于 DOM 中的，因此 document.querySelector 无法找到它。
+    需要在该元素被实际插入到 DOM 中之后再添加事件监听器。
+-->
+<script type="text/html" id="tools">
+    <a class="layui-btn layui-btn-xs" lay-event="edit_an_actor">EDIT</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete_an_actor">DELETE</a>
+    <!-- The button will open a new iframe to show all movies -->
+    <button class="layui-btn layui-btn-radius layui-btn-xs layui-btn-warm star-in-button" lay-event="assign_an_actor_to_a_movie">
+        STAR IN
+        <i class="layui-icon layui-icon-down layui-font-12"></i>
+    </button>
+</script>
+<!-- HTML Elements END -->
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/static/layui.js"></script>
+<script type="module" src="/static/utils/main.js"></script>
+</body>
+</html>

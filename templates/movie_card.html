@@ -1,0 +1,15 @@
+<!-- movie_card.html -->
+<!-- Create a new Jinja2 template file and define the HTML structure of the movie card -->
+<div class="layui-col-md5 layui-card layui-anim layui-anim-scale movie-card-background">
+    <div class="layui-card movie-text-background">
+        <div class="layui-card-header">
+            <h3 class="movie-title-text">{{ movie.title }}</h3>
+        </div>
+        <div class="layui-card-body">
+            <p class="movie-info-text">Actors：{{ movie.actors|join('，') }}</p>
+            <p class="movie-info-text">Release date：{{ movie.date }}</p>
+        </div>
+    </div>
+</div>
+
+
