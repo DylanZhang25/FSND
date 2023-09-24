@@ -4,7 +4,7 @@
 ### Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
 * Users using this project should already have Python 3.11.3 and pip installed on their local machines.
-* This project is built and tested in Windows 11 System.
+* This project is built and tested in a Windows 11 System.
 ___
 ### Project Structure
 ```
