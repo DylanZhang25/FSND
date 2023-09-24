@@ -1,7 +1,7 @@
 # FSND - Capstone
 
 ## Table of Contents
-1. [Getting Started](#Getting Started)
+1. [Getting Started](#getting-started)
    - [Introduction](#Introduction)
    - [Project Structure](#Project Structure)
 3. [标题2](#标题2)
@@ -9,7 +9,6 @@
 4. [标题3](#标题3)
 
 
-## Getting Started
 ### Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
 * Users using this project should already have Python 3.11.3 and pip installed on their local machines.
