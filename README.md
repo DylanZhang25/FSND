@@ -2,7 +2,7 @@
 
 ## Table of Contents
 [Introduction](#Introduction)
-    - [Project Structure](#Project-Structure)
+   - [Project Structure](#Project-Structure)
 [Backend Setup and Run](#Backend-Setup-And-Run)
     - [Set up Python Virtual Environment](#Set-up-Python-Virtual-Environment)
     - [In the virtual environment, clone the GitHub project to local](#In-the-virtual-environment-clone-the-GitHub-project-to-local)
@@ -15,8 +15,6 @@
     - [Endpoints](#Endpoints-document)
 [Deployment on the cloud](#Deployment-on-the-cloud)
 
-
-## Deployment on the cloud
 
 ## Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
