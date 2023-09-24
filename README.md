@@ -319,3 +319,27 @@ Note: All properties are optional, but at least one should be provided for an up
 	"message": "Actor successfully assigned to movie"
 }
 ```
+___
+### Deployment
+* API is hosted live on a cloud platform "Render.com".
+* URL for this project: https://render-deployment-fsnd-ytc3.onrender.com
+* Endpoints of the project API can be accessed by URL and requires authentication, two roles have their own authentication permissions:
+```
+  - Roles
+      - CastingAssistant
+      - CastingDirector
+  - Related Endpoints Permissions For Each Role:
+    - CastingAssistant: 
+        'get:movies'
+    - CastingDirector: 
+      - 'delete:actor',
+      - 'get:actors',
+      - 'get:movies',
+      - 'patch:actor',
+      - 'post:actor'
+```
+* I created two test users for this project and the reviewer can test endpoints at live application endpoint:
+  | User | Password| Role |
+  |----------|----------|----------|
+  | i_am_a_CastingAssistant@gmail.com | $CA123456 | CastingAssistant |
+  | i_am_a_CastingDirector@gmail.com | $CD123456 | CastingDirector|
