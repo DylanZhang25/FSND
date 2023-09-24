@@ -1,19 +1,19 @@
 # FSND - Capstone
 
 ## Table of Contents
-[Introduction](#Introduction)
+- [Introduction](#Introduction)
    - [Project Structure](#Project-Structure)
-[Backend Setup and Run](#Backend-Setup-And-Run)
+- [Backend Setup and Run](#Backend-Setup-And-Run)
    - [Set up Python Virtual Environment](#Set-up-Python-Virtual-Environment)
    - [In the virtual environment, clone the GitHub project to local](#In-the-virtual-environment-clone-the-GitHub-project-to-local)
    - [Installing Dependencies](#Installing-Dependencies)
    - [Run Backend](#Run-Backend)
-[Frontend Setup and Run](#Frontend-Setup-and-Run)
-[Testing](#Testing)
-[API Reference](#API-Reference)
+- [Frontend Setup and Run](#Frontend-Setup-and-Run)
+- [Testing](#Testing)
+- [API Reference](#API-Reference)
    - [Getting Started](#Getting-Started)
    - [Endpoints](#Endpoints-document)
-[Deployment on the cloud](#Deployment-on-the-cloud)
+- [Deployment on the cloud](#Deployment-on-the-cloud)
 
 
 ## Introduction
