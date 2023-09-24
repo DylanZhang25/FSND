@@ -1,15 +1,24 @@
 # FSND - Capstone
 
 ## Table of Contents
-1. [Getting Started](#getting-started)
-   - [Introduction](#Introduction)
-   - [Project Structure](#Project Structure)
-3. [标题2](#标题2)
-   - [子标题2.1](#子标题21)
-4. [标题3](#标题3)
+[Introduction](#Introduction)
+    - [Project Structure](#Project-Structure)
+[Backend Setup and Run](#Backend-Setup-And-Run)
+    - [Set up Python Virtual Environment](#Set-up-Python-Virtual-Environment)
+    - [In the virtual environment, clone the GitHub project to local](#In-the-virtual-environment-clone-the-GitHub-project-to-local)
+    - [Installing Dependencies](#Installing-Dependencies)
+    - [Run Backend](#Run-Backend)
+[Frontend Setup and Run](#Frontend-Setup-and-Run)
+[Testing](#Testing)
+[API Reference](#API-Reference)
+    - [Getting Started](#Getting-Started)
+    - [Endpoints](#Endpoints-document)
+[Deployment on the cloud](#Deployment-on-the-cloud)
 
 
-### Introduction
+## Deployment on the cloud
+
+## Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
 * Users using this project should already have Python 3.11.3 and pip installed on their local machines.
 * This project is built and tested in a Windows 11 System.
@@ -40,8 +49,8 @@ ___
 	- requirements.txt	
 ```
 ___
-### Backend Setup and Run
-#### 1. Set up Python Virtual Environment
+## Backend Setup and Run
+### 1. Set up Python Virtual Environment
 * Open Windows Command Prompt at the same level as the project folder
 * In the above location, use python 3.11 to create a virtual environment, named venv (random name, here named venv for convenience), using:
 ```
@@ -52,8 +61,8 @@ Note: `C:\Users\yourUsername\AppData\Local\Programs\Python\Python311` is the def
 ```
 venv\Scripts\activate
 ```
-#### 2. In the virtual environment, clone the GitHub project to local
-#### 3. Installing Dependencies
+### 2. In the virtual environment, clone the GitHub project to local
+### 3. Installing Dependencies
 * In the virtual environment, under the project's backend folder, install the dependency using:
 ```
 pip install -r requirements.txt
@@ -102,16 +111,16 @@ Create a file named .env in the root directory of the virtual environment (if it
 PYTHONPATH=D:\path-to-your-project\venv\Scripts\python.exe
 ```
 
-#### 4. Run Backend
+### 4. Run Backend
 in the folder of the position of `app.py`, in the terminal run:
 ```
 flask run --debug --reload 
 ```
 ___
-### Frontend Setup and Run
+## Frontend Setup and Run
 The frontend of this project is only using JavaScript and Layui, no more additional actions are needed.
 ___
-### Tests
+## Testing
 Due to the limitation of Render.com, a free account can create one Postgres Database only. In this case, this project assumes the testing and deployment database are the same one. 
 In the backend, users can generate a demo database using the Flask CLI, Movies and Actors data for testing will be added to the database automatically.
 ```
@@ -139,8 +148,8 @@ python -m unittest test_CAM.CastingAgencyModelsTestCase.test_get_movies_success
 python -m unittest test_CAM.CastingAgencyModelsTestCase.test_get_movies_non_existent_page
 ```
 ___
-### API Reference
-#### Getting Started
+## API Reference
+### Getting Started
 * Base URL: the backend app is hosted at the default, http://127.0.0.1:5000.
 * Authentication:
   - Roles
@@ -174,7 +183,7 @@ When a request fails, the API will return four error types:
 * 404
 * 422
 
-#### Endpoints
+### Endpoints Document
 
 `GET '/api/actors'`
 * Sample:
@@ -328,7 +337,7 @@ Note: All properties are optional, but at least one should be provided for an up
 }
 ```
 ___
-### Deployment on the cloud
+## Deployment on the cloud
 * API is hosted live on a cloud platform "Render.com".
 * URL for this project: https://render-deployment-fsnd-ytc3.onrender.com
 * Endpoints of the project API can be accessed by URL and requires authentication, two roles have their own authentication permissions:
