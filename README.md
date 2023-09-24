@@ -89,7 +89,7 @@ WTForms           3.0.1
 * Using a specific version of the Python interpreter and installed packages in a virtual environment
 Create a file named .env in the root directory of the virtual environment (if it does not already exist) and add the following to it:
 ```
-PYTHONPATH=D:\YourPath\Trivia API\venv\Scripts\python.exe
+PYTHONPATH=D:\path-to-your-project\venv\Scripts\python.exe
 ```
 
 #### 4. Run Backend
