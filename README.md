@@ -1,5 +1,14 @@
 # FSND - Capstone
 
+## Table of Contents
+1. [Getting Started](#Getting Started)
+   - [Introduction](#Introduction)
+   - [Project Structure](#Project Structure)
+3. [标题2](#标题2)
+   - [子标题2.1](#子标题21)
+4. [标题3](#标题3)
+
+
 ## Getting Started
 ### Introduction
 * This Project is for Udacity's Full Stack Capstone project and it will be deployed on Render.com for functions presentation.
@@ -320,7 +329,7 @@ Note: All properties are optional, but at least one should be provided for an up
 }
 ```
 ___
-### Deployment
+### Deployment on the cloud
 * API is hosted live on a cloud platform "Render.com".
 * URL for this project: https://render-deployment-fsnd-ytc3.onrender.com
 * Endpoints of the project API can be accessed by URL and requires authentication, two roles have their own authentication permissions:
@@ -338,7 +347,7 @@ ___
       - 'patch:actor',
       - 'post:actor'
 ```
-* I created two test users for this project and the reviewer can test endpoints at live application endpoint:
+* I created two test users for this project by which the reviewer can login in the given URL above. Also, the reviewer can test endpoints at the live application endpoint:
   | User | Password| Role |
   |----------|----------|----------|
   | i_am_a_CastingAssistant@gmail.com | $CA123456 | CastingAssistant |
